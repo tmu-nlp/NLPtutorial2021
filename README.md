@@ -26,7 +26,7 @@
 9. Pull Requestsを作ってレビューしてもらう
 
 ### みんなの進捗
-![progress](https://github.com/tmu-nlp/NLPtutorial2020/blob/master/progress.png)
+![progress](progress.png)
 
 
 ### Docker環境について
