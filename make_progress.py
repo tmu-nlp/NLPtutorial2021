@@ -11,7 +11,7 @@ import datetime
 
 ignore = ['.sh', '.png', '.py', '.git', 'README', 'data', 'script', 'test', '.idea', '.github', 'hirao', 'dockerfiles']
 maxcounts = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
-SIZE = 12
+SIZE = 13
 
 user = list()
 user.append("")
@@ -49,18 +49,19 @@ for i in range(npscore.shape[1]):
 today = datetime.date.today()
 #today = datetime.date(2017, 8, 2)
 date_list = list()
-date_list.append(datetime.date(2020, 5, 25))
-date_list.append(datetime.date(2020, 6, 1))
-date_list.append(datetime.date(2020, 6, 8))
-date_list.append(datetime.date(2020, 6, 15))
-date_list.append(datetime.date(2020, 6, 22))
-date_list.append(datetime.date(2020, 6, 29))
-date_list.append(datetime.date(2020, 7, 6))
-date_list.append(datetime.date(2020, 7, 13))
-date_list.append(datetime.date(2020, 7, 20))
-date_list.append(datetime.date(2020, 7, 27))
-date_list.append(datetime.date(2020, 8, 3))
-date_list.append(datetime.date(2020, 8, 10))
+date_list.append(datetime.date(2021, 4, 16))
+date_list.append(datetime.date(2021, 4, 23))
+date_list.append(datetime.date(2021, 4, 30))
+date_list.append(datetime.date(2021, 5, 7))
+date_list.append(datetime.date(2021, 5, 14))
+date_list.append(datetime.date(2021, 5, 21))
+date_list.append(datetime.date(2021, 6, 4))
+date_list.append(datetime.date(2021, 6, 11))
+date_list.append(datetime.date(2021, 6, 18))
+date_list.append(datetime.date(2021, 6, 25))
+date_list.append(datetime.date(2021, 7, 2))
+date_list.append(datetime.date(2021, 7, 9))
+date_list.append(datetime.date(2021, 7, 16))
 
 for i, d in enumerate(date_list):
     if today >= d:
