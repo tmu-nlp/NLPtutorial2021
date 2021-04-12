@@ -1,5 +1,5 @@
-# NLPtutorial2020
-小町研2020年度新入生の基礎勉強会として、NLPプログラミングチュートリアルを実施します。
+# NLPtutorial2021
+小町研2021年度新入生の基礎勉強会として、NLPプログラミングチュートリアルを実施します。
 教材URL：http://www.phontron.com/teaching.php?lang=ja
 勉強会URL：http://cl.sd.tmu.ac.jp/groups/programming-tutorial
 
