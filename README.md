@@ -1,5 +1,5 @@
-# NLPtutorial2020
-小町研2020年度新入生の基礎勉強会として、NLPプログラミングチュートリアルを実施します。
+# NLPtutorial2021
+小町研2021年度新入生の基礎勉強会として、NLPプログラミングチュートリアルを実施します。
 教材URL：http://www.phontron.com/teaching.php?lang=ja
 勉強会URL：http://cl.sd.tmu.ac.jp/groups/programming-tutorial
 
@@ -12,7 +12,7 @@
 ### コーディングについて
 基本的にPython3系を使用してください。
 わからないところはTAまたは研究室の人に聞いてください。
-**<font color=red>他の人のコードは変更しないでください。</font>**
+<span style="color:red;"><b>他の人のコードは変更しないでください。</b></font>
 
 ### レポジトリのあげかた
 1. 各チュートリアル毎に、"tutorial##"（##はチュートリアルの番号を2桁で）フォルダを作成。
@@ -21,7 +21,7 @@
 4. `git checkout tutorial<nn>/<name>`でブランチの中に移動する
 5. `git add スクリプト名`（ワイルドカード*も使用可）
 6. `git commit -m 'コメント'`（コメントは自由に）
-7. `git pull` (**<font color=red>必ずやりましょう</font>**)
+7. `git pull` (<span style="color:red;"><b>必ずやりましょう</b></font>)
 8. `git push origin master`
 9. Pull Requestsを作ってレビューしてもらう
 
