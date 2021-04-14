@@ -25,7 +25,7 @@
 6. `git commit -m 'コメント'`（コメントは自由に）
 7. `git pull` (<span style="color:red;"><b>必ずやりましょう</b></font>)
 8. `git push origin master`
-9. Pull Requestsを作ってレビューしてもらう
+9. Pull Requests を作ってレビューしてもらう
 
 ### みんなの進捗
 ![progress](progress.png)
