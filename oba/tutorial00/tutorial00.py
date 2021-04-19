@@ -1,7 +1,8 @@
 import sys
 from collections import defaultdict
+from typing import List, Tuple
 
-def word_count(file_path):
+def word_count(file_path: str) -> List[Tuple[str, int]] :
     # デフォルトを任意の値に設定
     count = defaultdict(lambda: 0)
 
