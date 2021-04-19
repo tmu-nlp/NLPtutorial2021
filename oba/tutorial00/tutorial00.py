@@ -21,3 +21,4 @@ if __name__ == "__main__":
     word_counter = word_count(file_path=file_path)
     word_tab_count = [f"{word}\t{count}" for (word, count) in word_counter]
     print("\n".join(word_tab_count))
+    print("The number of unique words : " + str(len(word_tab_count)))
