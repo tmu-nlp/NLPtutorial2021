@@ -19,5 +19,7 @@ def test(path_input, path_answer):
 
 if __name__ == '__main__':
     # assert test("00-input.txt", "00-answer.txt")
-    for k, v in solve(sys.argv[1]).items():
+    result = solve(sys.argv[1])
+    for k, v in result.items():
         print(k, v)
+    print(f"The number of unique words: {len(result)}")
