@@ -1,4 +1,5 @@
 import sys
+import random
 from collections import *
 
 def solve(lines):
@@ -14,12 +15,11 @@ if __name__ == "__main__":
     with open(sys.argv[1]) as f:
         lines = f.readlines()
     #lines = open(sys.argv[1], "r")
-    ans = solve(lines)
-    #for (k, v) in ans:
-    #    print(k, v)
+    result = solve(lines)
     
     #単語の異なり数
-    print("Thre are {} words in data/wiki-en-word.".format(len(list(ans))))
+    print("There are [{}] words in data/wiki-en-word.".format(len(result)))
     #数単語の頻度
-    for (k, v) in ans[1000:1010]:
-        print(k, v)
+    for _ in range(5):
+        word = result[random.randint(0, len(list(result))-1)]
+        print("----> {} : {}".format(word[0], word[1]))
