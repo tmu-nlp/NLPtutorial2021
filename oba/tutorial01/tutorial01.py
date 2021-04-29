@@ -14,6 +14,12 @@ class UnigramLangModel():
         words_with_eos = [sentence.strip().split() + ["</s>"] for sentence in sentences]
         return words_with_eos
 
+    def prob(self):
+        for word, num_of_word in self.word_counts.items():
+            self.word_probs[word] = num_of_word / self.total_words
+        print("probed")
+        return self
+
     def train(self, train_file_pth):
         sentences = self.load_file(file_pth=train_file_pth)
         for sentence in sentences:
@@ -22,10 +28,19 @@ class UnigramLangModel():
                 self.total_words += 1
         print("trained")
 
+    def save(self, prob_file):
+            self.prob()
+            word_tab_prob = [f"{word}\t{prob}" for (word, prob) in self.word_probs.items()]
+            with open(prob_file, mode='w') as file:
+                file.write("\n".join(word_tab_prob))
+            print("saved")
+
 
 if __name__ == "__main__":
     # train_file = sys.argv[1]
     train_file = "../data/wiki-en-train.word"
+    prob_file = "tutorial01.txt"
 
     model = UnigramLangModel()
     model.train(train_file_pth=train_file)
+    model.save(prob_file=prob_file)
