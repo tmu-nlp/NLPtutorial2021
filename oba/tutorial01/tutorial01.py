@@ -20,7 +20,13 @@ class UnigramLangModel():
     def prob(self):
         for word, num_of_word in self.word_counts.items():
             self.word_probs[word] = num_of_word / self.total_words
-        print("probed")
+        return self
+
+    def load_model(self, model_pth):
+        with open(model_pth) as model:
+            for word_prob in model:
+                word, prob = word_prob.split("\t")
+                self.word_probs[word] = float(prob)
         return self
 
     def train(self, train_file_pth):
@@ -29,20 +35,13 @@ class UnigramLangModel():
             for word in sentence:
                 self.word_counts[word] += 1
                 self.total_words += 1
-        print("trained")
+        return self
 
     def save(self, prob_file):
-            self.prob()
-            word_tab_prob = [f"{word}\t{prob}" for (word, prob) in self.word_probs.items()]
-            with open(prob_file, mode='w') as file:
-                file.write("\n".join(word_tab_prob))
-            print("saved")
-    
-    def load_model(self, model_pth):
-        with open(model_pth) as model:
-            for word_prob in model:
-                word, prob = word_prob.split("\t")
-                self.word_probs[word] = float(prob)
+        self.prob()
+        word_tab_prob = [f"{word}\t{prob}" for (word, prob) in self.word_probs.items()]
+        with open(prob_file, mode='w') as file:
+            file.write("\n".join(word_tab_prob))
 
     def test(self, test_file_pth, prob_file_pth):
         self.load_model(model_pth=prob_file)
@@ -67,15 +66,16 @@ class UnigramLangModel():
         return(entropy, coverage)
 
 if __name__ == "__main__":
-    # train_file = sys.argv[1]
+    # train
     train_file = "../data/wiki-en-train.word"
     prob_file = "tutorial01.txt"
-    test_file = "../data/wiki-en-test.word"
-
     model = UnigramLangModel()
     model.train(train_file_pth=train_file)
     model.save(prob_file=prob_file)
     
+    # test
+    test_file = "../data/wiki-en-test.word"
+    model = UnigramLangModel()
     entropy, coverage = model.test(test_file_pth=test_file, prob_file_pth=prob_file)
     print(f"Entropy: {entropy:.6f}")
     print(f"Coverage: {coverage:.6f}")
