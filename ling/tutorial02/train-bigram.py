@@ -39,3 +39,4 @@ for ngram in counts:
     ans.write(ngram+" "+str(prob)+"\n")
 ans.close()
 
+print("training finished")
