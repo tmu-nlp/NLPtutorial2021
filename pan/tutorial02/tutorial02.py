@@ -14,11 +14,11 @@ class Ngram:
         model = defaultdict(int)                                         #defaultdict(int): just count
         with open(inputFile, "r") as train:                              
             for line in train:
-                line = line.lower().split(" ")                           #split line into words
-                line.append("</s>")                                      
-                line.insert(0, "<s>")
+                line = line.lower().split(" ")                           #'A' to 'a' and split line into words
+                line.append("</s>")                                      #add "<s>" at the end of the line
+                line.insert(0, "<s>")                                    #insert "<s>" at the beginning of the line
 
-                for i in range(1, len(line)):
+                for i in range(1, len(line)):                            #1~len-1
                     self.counts[" ".join(line[i - 1 : i + 1])] += 1      #Add molecular and denominator of 2-gram
                     self.context_counts[line[i - 1]] += 1
                     self.counts[line[i]] += 1                            #Add molecular and denominator of 1-gram
@@ -27,7 +27,7 @@ class Ngram:
         for ngram in self.counts:
             context = ngram.split(" ")                                   #split each ngram into words
             context = "".join(context[:-1])                              #"Wi-1 Wi"--{"Wi-1","Wi"}--{"Wi-1"}--"Wi-1"
-            probability = self.counts[ngram] / self.context_counts[context]
+            probability = self.counts[ngram] / self.context_counts[context]   
             model[ngram] = probability
         return model
 
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     trainpath = "/Users/kcnco/github/nlptutorial-master/data/wiki-en-train.word"
     testpath = "/Users/kcnco/github/nlptutorial-master/data/wiki-en-test.word"
 
-    NgramLM = Ngram(0.95, 0.5)
+    NgramLM = Ngram(0.95, 0.5)                       #range of lambda: 0.05~0.95 (0.05per)
     model = NgramLM.trainNgram(trainpath)
     print("entropy = " + NgramLM.testNgram(model, testpath), end=", ")
     print("when lambda1:0.95, lambda2:0.5")
