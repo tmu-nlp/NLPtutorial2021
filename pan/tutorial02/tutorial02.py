@@ -1,3 +1,5 @@
+#train-bigram: 2-gramモデルを学習
+#test-bigram: エントロピーを計算
 from collections import defaultdict
 import math
 import numpy
@@ -40,17 +42,31 @@ class Ngram:
                 line = line.lower().split()
                 line.append("</s>")
                 line.insert(0, "<s>")
-                for i in range(1, len(line) - 1):
-                    P1 = self.lambda_1 * modeldic[line[i]] + (1 - self.lambda_1) / V      #P1 & P2: 1-gram & 2-gram
-                    P2 = (self.lambda_2 * modeldic[" ".join(line[i - 1 : i])]+ (1 - self.lambda_2) * P1)
-                    H += math.log(1 / P2, 2)
-                    W += 1
+            for i in range(1, len(line) - 1):
+                P1 = self.lambda_1 * modeldic[line[i]] + (1 - self.lambda_1) / V      #P1 & P2: 1-gram & 2-gram
+                P2 = (self.lambda_2 * modeldic[" ".join(line[i - 1 : i])]+ (1 - self.lambda_2) * P1)
+                H += math.log(1 / P2, 2)                    
+                W += 1
         return str(round(H / W, 4))
 
 
 if __name__ == "__main__":
     trainpath = "/Users/kcnco/github/nlptutorial-master/data/wiki-en-train.word"
     testpath = "/Users/kcnco/github/nlptutorial-master/data/wiki-en-test.word"
+
+
+    
+    #for gridsearch
+    lambdas = numpy.arange(0, 1, 0.05)
+    results = {}
+    for param1 in lambdas:
+        for param2 in lambdas:
+            NgramLM = Ngram(param1, param2)
+            modelDic = NgramLM.trainNgram(trainpath)
+            results[NgramLM.testNgram(modelDic, testpath)] = str(param1) + "_" + str(param2)
+    for elem in sorted(results):
+        print(elem + '' + results[elem])
+
 
     NgramLM = Ngram(0.95, 0.5)                       #range of lambda: 0.05~0.95 (0.05per)
     model = NgramLM.trainNgram(trainpath)
