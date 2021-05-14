@@ -1,6 +1,6 @@
 #1-gram
 import sys
-training_file=open("/Users/lingzhidong/Documents/GitHub/nlptutorial/data/wiki-en-train.word","r")
+training_file=open("/Users/lingzhidong/Documents/GitHub/nlptutorial/data/wiki-ja-train.word","r")
 counts=dict()#単語を数えるための辞書
 total_count=0#単語の総数
 for line in training_file:
