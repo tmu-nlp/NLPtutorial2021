@@ -1,10 +1,10 @@
 from math import log
 from collections import defaultdict
 
-def train_hmm(data_path, model_path, L = 0.95, N = 1000000):
-    transition = defaultdict(lambda: 0) # 遷移
-    context    = defaultdict(lambda: 0) # 文脈
-    emit       = defaultdict(lambda: 0) # 生成
+def train_hmm(data_path, model_path):
+    transition = defaultdict(lambda: 0)
+    context    = defaultdict(lambda: 0)
+    emit       = defaultdict(lambda: 0)
 
     with open(data_path) as f:
         for line in f.readlines():
