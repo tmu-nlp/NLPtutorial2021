@@ -8,7 +8,6 @@ class Ngram():
     def __init__(self, lambda_x):
         self.ngram_counts = defaultdict(int)
         self.context_counts = defaultdict(int)       # create counts,context_counts
-        self.unigram_counts = defaultdict(int)
         self.lambada_1 = 0.95
         self.lambada_2 = lambda_x / 100
         self.V = 1000000
@@ -25,11 +24,12 @@ class Ngram():
                 for i in range(1,len(words)-1):                       # 1~len-1
                     ngramwords =' '.join([words[i-1], words[i]])
                     self.ngram_counts[ngramwords] += 1
+                    print(self.ngram_counts)
                     self.context_counts[words[i]] += 1
-                    self.unigram_counts[words[i]] += 1
+
         # output_File = open(outputFile,'w',encoding='gb18030', errors='ignore')
         for ngram, count in self.ngram_counts.items():
-            bigram = ngram.split()          # 'w_(i-1)w_1' --> 'w_(i-1)',w_1'
+            bigram = ngram.split()                                       # 'w_(i-1)w_1' --> 'w_(i-1)',w_1'
             bigram = ' '.join(bigram[:-1])
             probability = count / self.context_counts[bigram]
             model[ngram] = probability
@@ -61,4 +61,4 @@ if __name__ == '__main__':
     for i in range(5, 100, 5):
         bigramLM = Ngram(i)
         model_file = bigramLM.train(trainpath)
-        bigramLM.test(model_file,testpath)
+        bigramLM.test(model_file, testpath)
