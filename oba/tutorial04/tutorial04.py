@@ -1,6 +1,5 @@
 from collections import defaultdict
 from math import log2
-from typing import ForwardRef
 BOS = "<s>"
 EOS = "</s>"
 
