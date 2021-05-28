@@ -1,12 +1,16 @@
 #1-gram
 import sys
-training_file=open("/Users/lingzhidong/Documents/GitHub/nlptutorial/data/wiki-ja-train.word","r")
+training_file=open("/Users/lingzhidong/Documents/GitHub/nlptutorial/test/03-train-input.txt","r")
 counts=dict()#単語を数えるための辞書
 total_count=0#単語の総数
 for line in training_file:
     line=line.strip()#改行などを削除
     if len(line)!=0:
-        sentence=line.split(" ")#スペースで単語を分ける
+        if '\t' in line:
+            label,sentence=line.split("\t")
+        else:
+            sentence=line
+        sentence=line.split()
         sentence.append("</s>")#文末記号を加える
         for word in sentence:
             if word in counts:#辞書にある単語の場合　その単語の数+1　総数+1
