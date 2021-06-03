@@ -2,6 +2,10 @@ import sys,math
 from typing import Collection
 from collections import defaultdict
 
+'''
+para : string
+output : dict
+'''
 def create_features(x):
     phi=defaultdict(int)
     words=x.strip().split()
@@ -16,11 +20,23 @@ def predict_one(w,phi):
             score+=value*w[name]
     return binaryscore(score)
 
+'''
+args:float
+output: args>=0 => 1 ; args<0 => -1
+'''
 def binaryscore(score):
     if score>=0:
         return 1
     else:
         return -1
+
+'''
+args: int
+output: float
+'''
+def sigmoid(score):
+    return math.pow(math.e,score)/(1+math.pow(math.e,score))
+
 
 def predict_all(w,input_file):
     y_p=[]      
@@ -36,6 +52,9 @@ def predict_all(w,input_file):
             y_p.append(y_)
     return y_p
 
+#
+'''
+'''
 def update_weights(w,phi,y,c):
     for name,value in w.items():
         if abs(value)<c:
@@ -55,12 +74,20 @@ def getw(w,name,c,iter,last):
         last[name]=iter
     return w[name]
 
+'''
+args: dict A, dict B
+output: sum(A[x]*B[x]) , x in A & B
+'''
 def dot_w_phi(w,phi):
     sum=0
     for key,value in phi.items():
         sum+=w[key]*phi[key]
     return sum
 
+'''
+args: i (iteration times(epoch)) ,file path, margin, c
+output: dict w (trained weight)
+'''
 def online_train(i,input_file,margin,c):
     w=defaultdict(int)
     with open(input_file,'r',encoding='utf-8') as f :
@@ -80,9 +107,11 @@ def online_train(i,input_file,margin,c):
 
 
 if  __name__ == "__main__":
-    input_file=r"C:\Users\Lexus\Documents\GitHub\Nlptutorial\data\titles-en-test.word"
-    train_file=r"C:\Users\Lexus\Documents\GitHub\Nlptutorial\data\titles-en-train.labeled"
-    margin=1.0
+    input_file="/Users/lingzhidong/Documents/GitHub/nlptutorial/data/titles-en-test.word"
+    train_file="/Users/lingzhidong/Documents/GitHub/nlptutorial/data/titles-en-train.labeled"
+    #input_file=r"C:\Users\Lexus\Documents\GitHub\Nlptutorial\data\titles-en-test.word"
+    #train_file=r"C:\Users\Lexus\Documents\GitHub\Nlptutorial\data\titles-en-train.labeled"
+    margin=5.0
     c=0.0001
     w=online_train(20,train_file,margin,c)
     a=predict_all(w,input_file)
@@ -90,7 +119,21 @@ if  __name__ == "__main__":
     for x in a:
         ans.write(str(x)+'\n')
     ans.close()
-
+    print("Training finished")
+    
 '''
-Accuracy = 
+margin=1.0;c=0.0001
+Accuracy = 91.285866%
+
+margin=2.0;c=0.0001
+Accuracy = 91.108750%
+
+margin=3.0;c=0.0001
+Accuracy = 91.640099%
+
+margin=4.0;c=0.0001
+Accuracy = 89.585547%
+
+margin=5.0;c=0.0001
+Accuracy = 91.179596%
 '''
