@@ -55,8 +55,8 @@ class Ngram():
 
 
 if __name__ == '__main__':
-    trainpath = '/Users/houjing.wei/Downloads/nlptutorial-master/data/wiki-en-train.word'
-    testpath = '/Users/houjing.wei/Downloads/nlptutorial-master/data/wiki-en-test.word'
+    trainpath = '../nlptutorial-master/data/wiki-en-train.word'
+    testpath = '../nlptutorial-master/data/wiki-en-test.word'
 
     for i in range(5, 100, 5):
         bigramLM = Ngram(i)
