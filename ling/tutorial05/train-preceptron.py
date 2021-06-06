@@ -29,7 +29,7 @@ def create_features(x):
 
 def predict_all(w,input_file):
     y_p=[]      
-    with open(input_file,'r') as i:
+    with open(input_file,'r',encoding='utf-8') as i:
         for line in i:
             if '\t' in line:
                 l,line=line.split('\t')
