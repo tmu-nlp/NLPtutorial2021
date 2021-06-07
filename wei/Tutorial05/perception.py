@@ -33,7 +33,8 @@ def predict_all(model_file, input_file):
             weight = line[1]
             weights[feature] = int(weight)
             #print(weights.items())
-    with open(input_file, 'r', encoding= 'utf-8') as filein, open('./my_answer.txt', 'w', encoding= ' utf-8') as fileout:
+    with open(input_file, 'r', encoding= 'utf-8') as filein, \
+        open('./my_answer.txt', 'w', encoding= ' utf-8') as fileout:
         for line in filein.readlines():
             #print(line.strip().split())
             phi = create_features(line.strip().split())
@@ -44,6 +45,10 @@ def predict_all(model_file, input_file):
 class MyPerceptron:
 
     def train_perceptron(self, model_file, output_file, num_iterations: int):
+        '''
+        model_file = 'titles-en-train.labeled'
+        output_file = 'answer.txt'
+        '''
         weight = defaultdict(int)
         with open(model_file, 'r', encoding='utf=8') as f:
             for i in range(num_iterations):
@@ -65,7 +70,10 @@ class MyPerceptron:
 
     def test_perceptron(self,model_file, test_file):
         predict_all(model_file, test_file)
-
+        '''
+        model_file = 'answer.txt'
+        test_file = 'titles-en-test.word'
+        '''
 
 
 
