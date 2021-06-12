@@ -2,10 +2,6 @@ import sys,math
 from typing import Collection
 from collections import defaultdict
 
-'''
-para : string
-output : dict
-'''
 def create_features(x):
     phi=defaultdict(int)
     words=x.strip().split()
@@ -18,20 +14,21 @@ def predict_one(w,phi):
     for name,value in phi.items():
         if name in w:
             score+=value*w[name]
-    return binaryscore(score)
+    return sign(score)
+    #return sigmoid(score)
 
 '''
 args:float
 output: args>=0 => 1 ; args<0 => -1
 '''
-def binaryscore(score):
+def sign(score):
     if score>=0:
         return 1
     else:
         return -1
 
 '''
-args: int
+args: float
 output: float
 '''
 def sigmoid(score):
@@ -44,36 +41,23 @@ def predict_all(w,input_file):
         for line in i:
             if '\t' in line:
                 l,line=line.split('\t')
-            #print(line)
             phi=create_features(line.strip())
-            #print(phi.items())
             y_=predict_one(w,phi)
-            #print(y)
             y_p.append(y_)
     return y_p
 
-#
-'''
-'''
+#new
 def update_weights(w,phi,y,c):
     for name,value in w.items():
         if abs(value)<c:
             w[name]=0
         else:
-            w[name]-=binaryscore(value)*c
+            w[name]-=sign(value)*c
     for name,value in phi.items():
         w[name]+=value*y
 
-def getw(w,name,c,iter,last):
-    if iter!=last[name]:
-        c_size=c*(iter-last[name])
-        if abs(w[name])<=c_size:
-            w[name]=0
-        else:
-            w[name]-=binaryscore(w[name])*c_size
-        last[name]=iter
-    return w[name]
 
+#new
 '''
 args: dict A, dict B
 output: sum(A[x]*B[x]) , x in A & B
@@ -84,8 +68,9 @@ def dot_w_phi(w,phi):
         sum+=w[key]*phi[key]
     return sum
 
+#new
 '''
-args: i (iteration times(epoch)) ,file path, margin, c
+args: i (iteration times(epoch)) ,train file path, margin, c
 output: dict w (trained weight)
 '''
 def online_train(i,input_file,margin,c):
@@ -93,9 +78,7 @@ def online_train(i,input_file,margin,c):
     with open(input_file,'r',encoding='utf-8') as f :
         for a in range(0,i):
             for line in f:
-                #print(line)
                 y,x=line.strip().split('\t')
-                #print(x)
                 y=int(y)
                 phi=create_features(x)
                 val=y*dot_w_phi(w,phi)
@@ -104,6 +87,15 @@ def online_train(i,input_file,margin,c):
                     update_weights(w,phi,y,c)
     return w
 
+def getw(w,name,c,iter,last):
+    if iter!=last[name]:
+        c_size=c*(iter-last[name])
+        if abs(w[name])<=c_size:
+            w[name]=0
+        else:
+            w[name]-=sign(w[name])*c_size
+        last[name]=iter
+    return w[name]
 
 
 if  __name__ == "__main__":
