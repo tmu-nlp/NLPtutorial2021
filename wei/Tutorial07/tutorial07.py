@@ -81,21 +81,13 @@ class NeuralNet:
         self.net.append((w_out, b_out))
 
 
-    # def predict_all(self, test_file):
-    #     with open('./my_answer.txt', 'w', encoding='utf-8') as outfile:
-    #         with open(test_file, 'r', encoding='utf-8') as infile:
-    #             for sentences in infile:
-    #                 sentence = sentences.strip()
-    #                 phi = self.create_features(sentence, False)
-    #                 y_d = self.predict_one(self.net, phi)
-    #                 outfile.write(str(y_d) + '\t' + sentence +'\n')
-
+    # 順伝播と逆伝播
     def forward_nn(self, phi_0):
         #　各層の値
         phi = [0 for _ in range(len(self.net)+1)]
         phi[0] = phi_0
         for i in range(len(self.net)):
-            w, b =self.net[i]
+            w, b = self.net[i]
             #　前の層の値に基づいて値を計算
             phi[i+1] = np.tanh(np.dot(w, phi[i]) + b)
             #print(phi)
@@ -112,6 +104,7 @@ class NeuralNet:
             w, b = self.net[i]
             delta[i] = np.dot(delta_d[i+1], w)
         return delta_d
+
     # 重みの勾配を計算して、更新
     def update_weights(self, phi, delta_d, lamb):
         for i in range(len(self.net)):
@@ -142,7 +135,14 @@ def check_score(gold_file:str, pred:List[int], detail:bool = False):
     gold = np.array(gold)
     pred = np.array(pred)
     if detail:
-        print(classification_report(gold, pred))
+        # classification_report(y_true, y_pred, labels=None,target_names=None,sample_weight=None,digits=2,output_dict=False)
+        # 显示主要分类指标，返回每个分类标签的P,R,F1，以及总体微平均值，宏平均值，加权均值
+        # labels->list,报告中需评估的类标名称；target_names->list，显示与labels对应的名称；
+        # sample_weight-> 1维数组，不同数据点在评估结果中所占权重；digits->指定输出格式的精确度
+        # output_dict-> 若Ture，评估结果以dict返回
+
+        print(classification_report(gold, pred, digits=3))
+    # accuracy_score(y_true, y_pred) -> 精度
     print(f'accuracy:{accuracy_score(gold, pred)}')
 
 
@@ -165,7 +165,18 @@ if __name__ == '__main__':
     check_score(test_labeled, ans, True)
 
 
+'''
+              precision    recall  f1-score   support
 
+          -1       0.90      0.95      0.92      1477
+           1       0.94      0.88      0.91      1346
+
+   micro avg       0.92      0.92      0.92      2823
+   macro avg       0.92      0.92      0.92      2823
+weighted avg       0.92      0.92      0.92      2823
+
+accuracy:0.9181721572794899
+'''
 
 
 
