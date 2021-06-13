@@ -166,16 +166,16 @@ if __name__ == '__main__':
 
 
 '''
-              precision    recall  f1-score   support
+precision    recall  f1-score   support
 
-          -1       0.90      0.95      0.92      1477
-           1       0.94      0.88      0.91      1346
+          -1      0.910     0.953     0.931      1477
+           1      0.946     0.896     0.920      1346
 
-   micro avg       0.92      0.92      0.92      2823
-   macro avg       0.92      0.92      0.92      2823
-weighted avg       0.92      0.92      0.92      2823
+   micro avg      0.926     0.926     0.926      2823
+   macro avg      0.928     0.925     0.926      2823
+weighted avg      0.927     0.926     0.926      2823
 
-accuracy:0.9181721572794899
+accuracy:0.9259652851576338              
 '''
 
 
