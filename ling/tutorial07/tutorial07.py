@@ -46,19 +46,19 @@ def backward_nn(net, phi, label):
     j = len(net)
     delta = np.zeros(j + 1, dtype=np.ndarray) 
     delta[-1] = np.array([label - phi[j][0]])
-    delta_prime = np.zeros(j + 1, dtype=np.ndarray)
+    delta_d = np.zeros(j + 1, dtype=np.ndarray)
     for i in range(j, 0, -1):
-        delta_prime[i] = delta[i] * (1 - phi[i] ** 2).T  
+        delta_d[i] = delta[i] * (1 - phi[i] ** 2).T  
         w, _ = net[i - 1]
-        delta[i - 1] = np.dot(delta_prime[i], w)
-    return delta_prime
+        delta[i - 1] = np.dot(delta_d[i], w)
+    return delta_d
 
 
-def update_weights(net, phi, delta_prime, eta):
+def update_weights(net, phi, delta_d, eta):
     for i in range(len(net)):
         w, b = net[i]
-        w += eta * np.outer(delta_prime[i + 1], phi[i])
-        b += eta * delta_prime[i + 1]
+        w += eta * np.outer(delta_d[i + 1], phi[i])
+        b += eta * delta_d[i + 1]
 
 def predict_one(net, phi_0):
     phi = [0 for _ in range(len(net) + 1)]
@@ -77,6 +77,7 @@ def create_features_test(sentence, ids):
         if "UNI:" + word not in ids:
             continue
         phi[ids["UNI:" + word]] += 1
+
     return phi
 
 np.random.seed(seed=0)
@@ -101,8 +102,8 @@ net = init_network(len(ids), 2, 1)
 for _ in range(5):
     for phi_0, label in feat_label:
         phi = forward_nn(net, phi_0)
-        delta_prime = backward_nn(net, phi, label)
-        update_weights(net, phi, delta_prime, 0.1)
+        delta_d = backward_nn(net, phi, label)
+        update_weights(net, phi, delta_d, 0.1)
 
 
 with open("net", "wb") as net_file, open("ids", "wb") as ids_file:
