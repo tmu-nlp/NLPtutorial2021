@@ -1,0 +1,10 @@
+numpy
+joblib
+tqdm
+dill
+ipython
+jupyter
+scipy
+scikit-learn
+matplotlib
+nltk
