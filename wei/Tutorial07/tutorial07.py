@@ -1,6 +1,7 @@
 from collections import defaultdict
 import numpy as np
 from tqdm import tqdm
+import time
 from typing import List
 from sklearn.metrics import classification_report, accuracy_score
 # 学習1回、隠れ層1つ、隠れ層のノード2つ
@@ -113,8 +114,11 @@ class NeuralNet:
             b += lamb * delta_d[i+1]
 
     # 学習を行う
-    def train_nn(self, num_iter,lamb):
-        for i in tqdm(range(num_iter)):
+    def train_nn(self, num_iter: object, lamb: object) -> object:
+        for i in tqdm(range(num_iter),colour='green'):
+            # 基于迭代对象运行->tqdm(iterator); 手动更新->with tqdm() as pbar:
+            time.sleep(0.1)       # 进行动作，过0.1s
+
             for phi_0, y in tqdm(self.features):
                 phi = self.forward_nn(phi_0)
                 delta_d = self.backward_nn(phi, y)
@@ -143,7 +147,7 @@ def check_score(gold_file:str, pred:List[int], detail:bool = False):
 
         print(classification_report(gold, pred, digits=3))
     # accuracy_score(y_true, y_pred) -> 精度
-    print(f'accuracy:{accuracy_score(gold, pred)}')
+    print(f'accuracy:{accuracy_score(gold, pred):.3f}')
 
 
 if __name__ == '__main__':
@@ -157,7 +161,7 @@ if __name__ == '__main__':
     nn.init_net()
     print('Training...')
     nn.train_nn(1, 0.1)
-    print('Predicting...')
+    print('\nPredicting...')
     ans = []
     for sentence in open(test_file, 'r', encoding='utf-8'):
         pred = nn.test_nn(sentence)
@@ -166,16 +170,16 @@ if __name__ == '__main__':
 
 
 '''
-precision    recall  f1-score   support
+ precision    recall  f1-score   support
 
-          -1      0.910     0.953     0.931      1477
-           1      0.946     0.896     0.920      1346
+          -1      0.919     0.947     0.933      1477
+           1      0.940     0.909     0.924      1346
 
-   micro avg      0.926     0.926     0.926      2823
-   macro avg      0.928     0.925     0.926      2823
-weighted avg      0.927     0.926     0.926      2823
+    accuracy                          0.929      2823
+   macro avg      0.930     0.928     0.929      2823
+weighted avg      0.929     0.929     0.929      2823
 
-accuracy:0.9259652851576338              
+accuracy:0.929             
 '''
 
 
