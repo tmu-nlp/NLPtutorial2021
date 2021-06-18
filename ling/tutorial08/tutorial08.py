@@ -56,6 +56,14 @@ class RNN:
                 self.feat_label.append(sent)
                 #sent looks like[(word1,tag1),(word2,tag2)...]
 
+    '''
+    recieve each sentence, output parameter h/p/y ,y is the list of pos of each word in the sentence
+    @para
+    sent : one sentence
+    @return
+    h,p,y
+    '''
+
     def forward_rnn(self,sent):
         w_r_x,w_r_h,w_o_h,b_r,b_o=self.net
         h=[]
