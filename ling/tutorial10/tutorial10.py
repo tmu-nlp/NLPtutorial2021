@@ -70,8 +70,8 @@ class cky():
 if __name__ == '__main__':
     # grammarpath = "/work/test/08-grammar.txt"
     # datapath = "/work/test/08-input.txt"
-    grammarpath = r"C:\Users\Lexus\Documents\GitHub\Nlptutorial\data\wiki-en-test.grammar"
-    datapath = r"C:\Users\Lexus\Documents\GitHub\Nlptutorial\data\wiki-en-short.tok"
+    grammarpath = "/Users/lingzhidong/Documents/GitHub/nlptutorial/data/wiki-en-test.grammar"
+    datapath = "/Users/lingzhidong/Documents/GitHub/Nlptutorial/data/wiki-en-short.tok"
 
     cky_parse = cky()
     cky_parse.grammar(grammarpath)
