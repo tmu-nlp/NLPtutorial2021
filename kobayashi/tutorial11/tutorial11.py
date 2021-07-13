@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 SHIFT, LEFT, RIGHT = 0, 1, 2
-
+ 
 class DependencyParsing:
     def __init__(self):
         w = [defaultdict(lambda: 0) for _ in range(3)]
