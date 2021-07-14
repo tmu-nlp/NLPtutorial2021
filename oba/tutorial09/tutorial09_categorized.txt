@@ -1,0 +1,24 @@
+TOPIC: 0
+[('temple', 1157), ('japanese', 833), ('period', 807), ('called', 779), ('style', 601), ('shrine', 555), ('sect', 487), ('buddhist', 468), ('also', 457), ('one', 443), ('buddha', 411), ('japan', 364), ('used', 361), ('buddhism', 348), ('china', 339), ('priest', 313), ('shrines', 309), ('library', 305), ('made', 304), ('chinese', 288)]
+
+TOPIC: 1
+[('used', 589), ('however', 568), ('also', 561), ('period', 514), ('people', 428), ('first', 428), ('tale', 411), ('among', 404), ('genji', 380), ('many', 372), ('one', 337), ('since', 332), ('part', 322), ('japan', 316), ('time', 304), ('like', 285), ('work', 284), ('use', 279), ('based', 273), ('different', 266)]
+
+TOPIC: 2
+[('kyoto', 1680), ('established', 763), ('domain', 689), ('department', 647), ('research', 509), ('april', 473), ('university', 472), ('doshisha', 466), ('year', 459), ('city', 421), ('former', 391), ('war', 376), ('center', 376), ('new', 361), ('government', 356), ('campus', 354), ('forces', 302), ('science', 294), ('march', 283), ('division', 281)]
+
+TOPIC: 3
+[('station', 5668), ('line', 3102), ('kyoto', 1358), ('railway', 1328), ('trains', 1325), ('train', 1144), ('section', 1024), ('express', 878), ('jr', 685), ('electric', 624), ('keihan', 621), ('operation', 612), ('limited', 515), ('1', 511), ('company', 478), ('operated', 464), ('cars', 451), ('stations', 442), ('local', 424), ('osaka', 421)]
+
+TOPIC: 4
+[('also', 565), ('clan', 527), ('nobunaga', 508), ('province', 467), ('said', 445), ('mitsuhide', 399), ('ashikaga', 374), ('theory', 353), ('called', 335), ('shugo', 327), ('book', 321), ('kamakura', 313), ('shogun', 305), ('side', 296), ('however', 290), ('noh', 286), ('yoshitsune', 286), ('hosokawa', 283), ('kami', 279), ('according', 279)]
+
+TOPIC: 5
+[('school', 2658), ('university', 1152), ('cultural', 630), ('education', 578), ('schools', 507), ('national', 464), ('imperial', 448), ('high', 409), ('sutra', 393), ('higher', 373), ('course', 354), ('normal', 352), ('properties', 345), ('system', 341), ('training', 334), ('faculty', 328), ('established', 323), ('important', 322), ('tokyo', 302), ('bosatsu', 268)]
+
+TOPIC: 6
+[('city', 2558), ('kyoto', 2317), ('temple', 2271), ('prefecture', 1305), ('shrine', 1081), ('street', 806), ('ward', 731), ('hall', 705), ('river', 633), ('area', 506), ('national', 482), ('statue', 441), ('main', 439), ('gate', 434), ('located', 430), ('road', 417), ('maizuru', 412), ('built', 408), ('tea', 396), ('castle', 328)]
+
+TOPIC: 7
+[('emperor', 3574), ('family', 2175), ('imperial', 1879), ('court', 1286), ('fujiwara', 1187), ('clan', 1174), ('became', 1052), ('prince', 1016), ('son', 901), ('period', 846), ('government', 803), ('rank', 684), ('name', 640), ('province', 627), ('position', 548), ('died', 542), ('palace', 514), ('later', 498), ('also', 478), ('hideyoshi', 473)]
+
