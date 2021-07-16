@@ -147,3 +147,18 @@ if __name__ == '__main__':
         for words in wordslist:
             tags = hmm_viterbi(w, words, possible_tags, trans)
             print(' '.join(tags), file=f_out)
+
+            
+            
+# Accuracy: 88.76% (4050/4563)
+# Most common mistakes:
+# NNS --> NN      33
+# NN --> JJ       31
+# JJ --> VBN      31
+# NN --> NNS      24
+# NN --> NNP      18
+# VBN --> NNS     15
+# NN --> VBN      13
+# JJ --> NN       13
+# JJ --> RB       12
+# NNS --> JJ      12
