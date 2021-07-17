@@ -129,12 +129,12 @@ def test_hmm_percep(test_path):
     with open('answer.txt', 'w', encoding='utf-8') as out_f:
         for X in load_test_data(test_path):
             Y_hat = hmm_viterbi(w, X, transition, possible_tags)
-            print(''.join(Y_hat), file=out_f)
+            print('\t'.join(Y_hat), file=out_f)
 
 def main():
     args = arguments_parser()
-    train_path = args.train_file
-    test_path = args.input_file
+    train_path = args.train_file           # train_file：../data/wiki-en-train.norm_pos
+    test_path = args.input_file            # input_file: ../data/wiki-en-test.norm
 
     train_hmm_percep(train_path,epoch=5)
     test_hmm_percep(test_path)

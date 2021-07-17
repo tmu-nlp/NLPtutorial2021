@@ -1,0 +1,16 @@
+Sent Accuracy: 0.00% (/84)
+Word Prec: 68.05% (1866/2742)
+Word Rec: 80.88% (1866/2307)
+F-meas: 73.92%
+Bound Accuracy: 82.73% (2669/3226)
+1,2c1,2
+< ab c
+< b bc
+---
+> ab c
+> b bc
+Sent Accuracy: 0.00% (/2)
+Word Prec: 25.00% (1/4)
+Word Rec: 16.67% (1/6)
+F-meas: 20.00%
+Bound Accuracy: 33.33% (2/6)
