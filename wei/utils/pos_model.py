@@ -102,6 +102,8 @@ class PosModel:
             self.Pt, self.Pe, self.lamb, self.unk_rate = params
             pprint.pprint(params)
 
+    def predict_pos(self, data_):
+        yield self.__viterbi(data_)
 
     def __viterbi(self, data):
         results = []
@@ -136,16 +138,18 @@ class PosModel:
 
                     next_prev_poses += line_poses
                     prev_poses = list(set(next_prev_poses))
+
             print(best_edges)
             # 後ろ向きステップ
-            words = []
-            next_edge = best_edges[len(best_edges) -1]
+            tags = []
+            next_edge = line[-1]
+
             while next_edge != None:
-                word = line[next_edge[0]:next_edge[1]]
-                words.append(word)
-                next_edge = best_edges[next_edge[0]]
-            words.reverse()
-            results.append(' '.join(words) + '\n')
+                position,tag = next_edge.split(' ')
+                tags.append(tag)
+                next_edge = best_edges[next_edge]
+            tags.reverse()
+            results.append(' '.join(tags) + '\n')
 
         return results
 

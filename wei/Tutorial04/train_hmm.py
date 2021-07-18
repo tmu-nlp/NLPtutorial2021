@@ -6,11 +6,11 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-t', '--train-file', required=True, type=str)
-    parser.add_argument('-m', '--model-file', required=True, type=str)
+    parser.add_argument('-t', '--train_file', required=True, type=str)
+    parser.add_argument('-m', '--model_file', required=True, type=str)
     arg = parser.parse_args()
-    # train_file='../data/wiki-en-train.norm_pos'
-    # model_file='model_file.pkl'
+    # train_file='../data/wiki-en-train.norm_pos'    --モデル学習用のラベルありテータ
+    # model_file='model_file.pkl'                   　――モデルパラメータ保存
     data = load_data(arg.train_file, decorator=lambda w: w.lower())
     data = data[:1]          # for viewing the outputs
 
