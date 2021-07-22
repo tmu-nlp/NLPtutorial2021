@@ -99,7 +99,9 @@ def update_weights(w, feats, ans, corr):
         w[ans][key] -= value
         w[corr][key] += value
 
-
+'''
+ファイルを読み込む
+'''
 def load_mst(path):
     queue = []
     heads = [-1]
@@ -115,7 +117,7 @@ def load_mst(path):
             heads = [-1]
 
 
-def train_sr(train_path, epoch_num=20):
+def train_sr(train_path, epoch_num):
     for _ in tqdm(range(epoch_num)):
         for queue, heads in load_mst(train_path):
             shift_reduce_train(queue, heads, w)
@@ -132,12 +134,13 @@ def test_sr(test_path, out_path):
 
 
 if __name__ == '__main__':
-    w = [defaultdict(int) for _ in range(3)]
-    train_path = '/Users/lingzhidong/Documents/GitHub/nlptutorial/data/mstparser-en-train.dep'
-    test_path = '/Users/lingzhidong/Documents/GitHub/nlptutorial/data/mstparser-en-test.dep'
-    out_path = './out.txt'
-    train_sr(train_path)
-    test_sr(test_path, out_path)
+    for epoch_num in range(1,20):
+        w = [defaultdict(int) for _ in range(3)]
+        train_path = '/Users/lingzhidong/Documents/GitHub/nlptutorial/data/mstparser-en-train.dep'
+        test_path = '/Users/lingzhidong/Documents/GitHub/nlptutorial/data/mstparser-en-test.dep'
+        out_path = './out.txt'
+        train_sr(train_path,epoch_num)
+        test_sr(test_path, out_path)
 
-    script_path = '/Users/lingzhidong/Documents/GitHub/nlptutorial/script/grade-dep.py'
-    subprocess.run(f'python2 {script_path} {test_path} {out_path}'.split())
+        script_path = '/Users/lingzhidong/Documents/GitHub/nlptutorial/script/grade-dep.py'
+        subprocess.run(f'python2 {script_path} {test_path} {out_path}'.split())
